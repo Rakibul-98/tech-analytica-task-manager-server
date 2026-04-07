@@ -1,0 +1,63 @@
+enum Role {
+  ADMIN
+  USER
+}
+
+enum TaskStatus {
+  PENDING
+  PROCESSING
+  DONE
+}
+
+enum AuditActionType {
+  TASK_CREATED
+  TASK_UPDATED
+  TASK_DELETED
+  STATUS_UPDATED
+  ASSIGNMENT_UPDATED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignedTasks Task[]     @relation("AssignedTasks")
+  auditLogs     AuditLog[] @relation("ActorLogs")
+
+  @@map("users")
+}
+
+model Task {
+  id             String     @id @default(uuid())
+  title          String
+  description    String?
+  status         TaskStatus @default(PENDING)
+  assignedUserId String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  assignedUser User?      @relation("AssignedTasks", fields: [assignedUserId], references: [id])
+  auditLogs    AuditLog[] @relation("TaskLogs")
+
+  @@map("tasks")
+}
+
+model AuditLog {
+  id         String          @id @default(uuid())
+  actorId    String
+  actionType AuditActionType
+  taskId     String
+  beforeData Json?
+  afterData  Json?
+  createdAt  DateTime        @default(now())
+
+  actor User @relation("ActorLogs", fields: [actorId], references: [id])
+  task  Task @relation("TaskLogs", fields: [taskId], references: [id])
+
+  @@map("audit_logs")
+}
