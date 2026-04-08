@@ -41,7 +41,7 @@ model Task {
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
 
-  assignedUser User?      @relation("AssignedTasks", fields: [assignedUserId], references: [id])
+  assignedUser User?      @relation("AssignedTasks", fields: [assignedUserId], references: [id], onDelete: SetNull)
   auditLogs    AuditLog[] @relation("TaskLogs")
 
   @@map("tasks")
@@ -56,8 +56,8 @@ model AuditLog {
   afterData  Json?
   createdAt  DateTime        @default(now())
 
-  actor User @relation("ActorLogs", fields: [actorId], references: [id])
-  task  Task @relation("TaskLogs", fields: [taskId], references: [id])
+  actor User @relation("ActorLogs", fields: [actorId], references: [id], onDelete: Cascade)
+  task  Task @relation("TaskLogs", fields: [taskId], references: [id], onDelete: Cascade)
 
   @@map("audit_logs")
 }
