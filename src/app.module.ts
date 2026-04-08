@@ -5,9 +5,10 @@ import { GlobalExceptionFilter } from './app/middlewares/GlobalExceptionFilter';
 import { PrismaModule } from './shared/prisma.module';
 import { AuthModule } from './app/modules/auth/auth.module';
 import { UsersModule } from './app/modules/users/users.module';
+import { TasksModule } from './app/modules/tasks/tasks.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule],
+  imports: [PrismaModule, AuthModule, UsersModule, TasksModule],
   providers: [
     {
       provide: APP_FILTER,

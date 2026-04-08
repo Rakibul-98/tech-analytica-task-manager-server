@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../../guards/jwt-auth.guard';
 import { RolesGuard } from '../../guards/roles.guard';
 import { Roles } from '../../decorators/roles.decorator';
-import { UserRole } from '../../constants';
+import { UserRole } from '../../constants/index.';
 import { GetUsersQueryDto } from './users.dto';
 
 @Controller('users')

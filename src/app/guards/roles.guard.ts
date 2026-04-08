@@ -8,7 +8,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { UserRole } from '../constants';
+import { UserRole } from '../constants/index.';
 import { ROLES_KEY } from '../decorators/roles.decorator';
 
 @Injectable()
