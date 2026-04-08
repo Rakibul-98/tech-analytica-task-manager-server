@@ -17,7 +17,7 @@ import {
   UpdateTaskStatusDto,
   GetTasksQueryDto,
 } from './tasks.dto';
-import { UserRole } from '../../constants/index.';
+import { UserRole } from '../../constants';
 import { PrismaService } from '../../../shared/prisma.service';
 
 @Injectable()

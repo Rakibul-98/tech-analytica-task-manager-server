@@ -6,9 +6,10 @@ import { PrismaModule } from './shared/prisma.module';
 import { AuthModule } from './app/modules/auth/auth.module';
 import { UsersModule } from './app/modules/users/users.module';
 import { TasksModule } from './app/modules/tasks/tasks.module';
+import { AuditLogModule } from './app/modules/audit-log/audit-log.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, TasksModule],
+  imports: [PrismaModule, AuthModule, UsersModule, TasksModule, AuditLogModule],
   providers: [
     {
       provide: APP_FILTER,

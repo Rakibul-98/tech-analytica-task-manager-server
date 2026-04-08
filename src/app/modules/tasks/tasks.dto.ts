@@ -5,7 +5,7 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
-import { TaskStatus } from '../../constants/index.';
+import { TaskStatus } from '../../constants';
 
 export class CreateTaskDto {
   @IsString()
