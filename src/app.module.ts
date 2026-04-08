@@ -4,9 +4,10 @@ import { ValidationPipe } from '@nestjs/common';
 import { GlobalExceptionFilter } from './app/middlewares/GlobalExceptionFilter';
 import { PrismaModule } from './shared/prisma.module';
 import { AuthModule } from './app/modules/auth/auth.module';
+import { UsersModule } from './app/modules/users/users.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule],
+  imports: [PrismaModule, AuthModule, UsersModule],
   providers: [
     {
       provide: APP_FILTER,
